@@ -1,6 +1,6 @@
 FROM node:latest
 
-WORKDIR /usr/bin/docker
+WORKDIR /usr/src/app
 
 COPY package.json ./
 
