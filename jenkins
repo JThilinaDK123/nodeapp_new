@@ -14,6 +14,18 @@ pipeline {
         git 'https://github.com/JThilinaDK123/nodeapp_new.git'
       }
     }
+    
+    stage('Initialize'){
+        steps {
+            script{
+                def dockerHome = tool 'myDocker'
+                env.PATH = "${dockerHome}/bin:${env.PATH}"
+                
+            }
+            
+        }
+        
+    }
 
     stage('Build image') {
       steps{
