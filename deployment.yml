@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: nodeserver
-        image: thilina9718/node_app:latest
+        image: thilina9718/node_app
         ports:
         - containerPort: 3000
