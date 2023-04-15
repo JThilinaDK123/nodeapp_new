@@ -13,4 +13,4 @@ RUN npm install
 COPY . .
 
 EXPOSE 4000
-CMD [ "node", "index.js" ]
+CMD [ "node", "index.js","/var/jenkins_home/workspace/test_01@tmp/durable-a75b2203/script.sh" ]
