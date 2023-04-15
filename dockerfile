@@ -9,8 +9,9 @@ RUN npm install
 #   && tar xzvf docker-17.04.0-ce.tgz \
 #   && mv docker/docker /usr/local/bin \
 #   && rm -r docker docker-17.04.0-ce.tgz
+RUN ["chmod", "+x", "/var/jenkins_home/workspace/test_01@tmp/durable-a75b2203/script.sh"]
 
 COPY . .
 
 EXPOSE 4000
-CMD [ "node", "index.js","/var/jenkins_home/workspace/test_01@tmp/durable-a75b2203/script.sh" ]
+CMD [ "node", "index.js" ]
