@@ -41,7 +41,7 @@ jobs:
         run: |
             export SHELL=/bin/bash
             eval $(minikube -p minikube docker-env)
-            docker build -f ./Dockerfile -t thilina9718/node_app:latest .
+            docker build -f ./Dockerfile -t thilina9718/node_app .
             echo -n "verifying images:"
             docker images         
       - name: Deploy to minikube
