@@ -32,17 +32,21 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Create kubeconfig
+      - uses: actions/checkout@v2
+      - name: Start minikube
+        uses: medyagh/setup-minikube@latest
+      - name: Try the cluster !
+        run: kubectl get pods -A
+      - name: Build image
         run: |
-          mkdir ${HOME}/.kube
-          echo ${{ secrets.KUBE_CONFIG }} | base64 --decode > ${HOME}/.kube/config
-          cat ${HOME}/.kube/config
-      - name: Use context
-        run: kubectl config use-context octobay-api
-      - name: Deploy to K8s
-        run: kubectl apply -f deploymentservice.yml
+            export SHELL=/bin/bash
+            eval $(minikube -p minikube docker-env)
+            docker build -f ./Dockerfile -t thilina9718/node_app .
+            echo -n "verifying images:"
+            docker images         
+      - name: Deploy to minikube
+        run:
+          kubectl apply -f deploymentservice.yml
       - name: Test service URLs
         run: |
             minikube service list
